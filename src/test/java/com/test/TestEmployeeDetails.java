@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 /**
  * @Author evi1
  * @Create 2020/2/17 21:47
+ * 测试员工的年薪
+ * 测试员工的评估金额
  */
 
 public class TestEmployeeDetails {
