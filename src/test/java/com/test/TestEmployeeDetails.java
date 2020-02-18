@@ -16,7 +16,7 @@ public class TestEmployeeDetails {
     EmpBusinessLogic empBusinessLogic = new EmpBusinessLogic();
     EmployeeDetails employee = new EmployeeDetails();
 
-    @Test()
+    @Test
     public void testCalculateAppraisal() {
         employee.setName("Tom");
         employee.setAge(25);
@@ -28,7 +28,7 @@ public class TestEmployeeDetails {
     /**
      * Test to check yearly salary
      */
-    @Test()
+    @Test
     public void testCalculateYearlySalary() {
         employee.setName("Tom");
         employee.setAge(25);
