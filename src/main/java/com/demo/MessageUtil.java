@@ -34,4 +34,22 @@ public class MessageUtil {
         System.out.println(message);
         return message;
     }
+
+    /**
+     * add "Bye!" to the message
+     */
+    public String exitMessage() {
+        message = "Bye!" + message;
+        System.out.println(message);
+        return message;
+    }
+
+    /**
+     * print calculate message
+     */
+    public void printCalculateMessage() {
+        System.out.println(message);
+        int a = 0;
+        int b = 1 / a;
+    }
 }
