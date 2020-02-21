@@ -1,5 +1,8 @@
 package com.practice;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
+
 /**
  * @author evi1
  * @date 2020/2/20 23:08
@@ -33,10 +36,11 @@ public class AnalysisScore {
 
     /**
      * 对学生的成绩按照从高到低进行排名，成绩相同的按照学号排序
+     * 使用冒泡排序法
      *
-     * @return
+     * @return studentList 排序后的学生详细信息对象列表
      */
-    public StudentDetails[] ScoreRank() {
+    public StudentDetails[] scoreRank() {
         for (int i = 0; i < studentList.length; i++) {
             for (int j = 0; j < studentList.length - 1 - i; j++) {
                 // 根据成绩从大到小排序
@@ -55,5 +59,29 @@ public class AnalysisScore {
             }
         }
         return studentList;
+    }
+
+    /**
+     * 求学生平均分
+     * Tips: 这里有个问题，求平均分，必然会产生小数，在Java中，浮点数有float和double，用哪个呢？
+     * float精度比double小，float类型精度较小在比较大小时有可能会出现误判
+     * 对于这里求成绩的平均数，对精度没什么太多的要求，float和double都能胜任。
+     * 记住一点：
+     * 不能确认使用float和double的时候，请选择double，虽然有可能会有计算性能问题，但程序的第一要义是功能正确
+     *
+     * @return avgScore 平均分，保留3位小数
+     */
+    public double calcAvgScore() {
+        // 获取所有学生的成绩，放入列表等待计算
+        double avgScore;
+        int sum = 0;
+        for (StudentDetails stu : studentList) {
+            sum += stu.getScore();
+        }
+        avgScore = (double) sum / studentList.length;
+        // 保留3位小数
+        DecimalFormat df = new DecimalFormat("#.###");
+        avgScore = Double.parseDouble(df.format(avgScore));
+        return avgScore;
     }
 }

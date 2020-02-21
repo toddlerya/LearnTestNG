@@ -19,11 +19,10 @@ public class AnalysisScoreTest {
         StudentDetails a = new StudentDetails("小王", 1, 93);
         StudentDetails b = new StudentDetails("小刘", 2, 90);
         StudentDetails c = new StudentDetails("小周", 3, 90);
-        StudentDetails d = new StudentDetails("小张", 3, 100);
+        StudentDetails d = new StudentDetails("小张", 4, 100);
         AnalysisScore asObj = new AnalysisScore();
         asObj.setStudentList(a, b, c, d);
     }
-
 
     @Test
     public void testAnalysisScore() {
