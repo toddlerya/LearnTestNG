@@ -1,7 +1,6 @@
 package com.practice;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 
 /**
  * @author evi1
@@ -30,8 +29,20 @@ public class AnalysisScore {
         this.studentList = studentList;
     }
 
+    /**
+     * 获取已经加载的学生信息列表
+     *
+     * @return studentList
+     */
     public StudentDetails[] getStudentList() {
         return studentList;
+    }
+
+    /**
+     * 清空加载的学生信息列表，通常用语重新加载数据
+     */
+    public void clearStudentList() {
+        this.studentList = null;
     }
 
     /**

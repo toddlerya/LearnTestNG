@@ -15,6 +15,13 @@ public class StudentDetails {
 
     }
 
+    /**
+     * 有参数的构造方法，快速完成对象创建并初始化
+     *
+     * @param name  学生姓名
+     * @param code  学号
+     * @param score 成绩
+     */
     public StudentDetails(String name, int code, int score) {
         this.setName(name);
         this.setCode(code);
@@ -36,8 +43,6 @@ public class StudentDetails {
     }
 
     /**
-     * C
-     *
      * @param code 设置学号
      */
     public void setCode(int code) {

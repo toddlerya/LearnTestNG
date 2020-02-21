@@ -49,5 +49,17 @@ public class Run {
          * 求所有学生成绩平均值，保留三维小数
          */
         System.out.println("\n所有学生成绩的平均值为： " + asObj.calcAvgScore());
+
+        /*
+         * 清空已经加载的所有数据
+         */
+        System.out.println("Running clearStudentList()");
+        System.out.println("\n当前已经加载了" + asObj.getStudentList().length + "个学生信息");
+        asObj.clearStudentList();
+        if (asObj.getStudentList() == null) {
+            System.out.println("运行clearStudentList()后，还剩0个学生信息");
+        } else {
+            System.out.println("运行clearStudentList()后，还剩" + asObj.getStudentList().length + "个学生信息");
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.practice;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -14,6 +15,7 @@ public class AnalysisScoreTest {
     /**
      * 初始化测试数据
      */
+    @BeforeClass
     public void initData() {
         // 创建若干个学生信息, 并初始化信息
         StudentDetails a = new StudentDetails("小王", 1, 93);
