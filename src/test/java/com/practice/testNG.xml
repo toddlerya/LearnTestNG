@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="StudentScoreAnalysis">
-
+<suite name="StudentTestSuite">
+    <test name="AnalysisScoreTet">
+        <groups>
+            <run>
+                <include name="funcTest"/>
+                <include name="abnormalTest"/>
+                <include name="allTest"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.practice.TestAnalysisScore"></class>
+        </classes>
+    </test>
 </suite>

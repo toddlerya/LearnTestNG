@@ -46,14 +46,14 @@ public class TestAnalysisScore {
     }
 
 
-    @Test(groups = {"funcTest", "allTest"})
+    @Test(dependsOnMethods = {"testSetAndGetStudentList"}, groups = {"funcTest", "allTest"})
     public void testClearStudentList() {
         // 载入数据后，测试能否清空数据
         asObj.clearStudentList();
         Assert.assertNull(asObj.getStudentList(), "StudentList数组未清空");
     }
 
-    @Test(groups = {"funcTest", "allTest"})
+    @Test(dependsOnMethods = {"testSetAndGetStudentList"}, groups = {"funcTest", "allTest"})
     public void testScoreRank() {
         StudentDetails a = new StudentDetails("小王", 1, 90);
         StudentDetails b = new StudentDetails("小刘", 2, 93);
