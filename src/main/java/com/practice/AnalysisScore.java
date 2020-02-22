@@ -15,8 +15,18 @@ public class AnalysisScore {
         if (studentList.length == 0) {
             throw new IllegalArgumentException("请传入至少一个学生的详细信息!");
         }
-        // 校验学号是否有重复
+        // 校验学号是否有重复，学生成绩是否大于0，学号是否合法
         for (int i = 0; i < studentList.length; i++) {
+            if (studentList[i].getScore() < 0) {
+                String msg = String.format("有学生成绩为小于零，请检查：>>> 姓名：%s, 学号: %d, 成绩: %d",
+                        studentList[i].getName(), studentList[i].getCode(), studentList[i].getScore());
+                throw new IllegalArgumentException(msg);
+            }
+            if (studentList[i].getCode() < 0) {
+                String msg = String.format("有学生学号为小于零，请检查：>>> 姓名：%s, 学号: %d, 成绩: %d",
+                        studentList[i].getName(), studentList[i].getCode(), studentList[i].getScore());
+                throw new IllegalArgumentException(msg);
+            }
             for (int j = 0; j < studentList.length - 1 - i; j++) {
                 if (studentList[j].getCode() == studentList[j + 1].getCode()) {
                     String msg = String.format("有学生学号重复，请检查：\nA>>> 姓名: %s, 学号: %d \nB>>> 姓名: %s, 学号: %d",

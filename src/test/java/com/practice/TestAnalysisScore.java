@@ -31,45 +31,89 @@ public class TestAnalysisScore {
         asObj.clearStudentList();
     }
 
-    @Test
-    public void testSetStudentList() {
+    @Test(groups = {"funcTest", "allTest"})
+    public void testSetAndGetStudentList() {
         /*
-        测试载入学生数据是否成功
+        测试载入学生数据以及读取学生数据是否成功
          */
         StudentDetails a = new StudentDetails("小王", 1, 93);
         StudentDetails b = new StudentDetails("小刘", 2, 90);
         asObj.setStudentList(a, b);
+        Assert.assertEquals(asObj.getStudentList().length, 2, "获取学生信息个数错误");
+        Assert.assertEquals(asObj.getStudentList()[0].getName(), "小王", "获取学生姓名错误");
+        Assert.assertEquals(asObj.getStudentList()[1].getCode(), 2, "获取学生成绩错误");
+        Assert.assertEquals(asObj.getStudentList()[1].getScore(), 90, "获取学生成绩错误");
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class,
-            expectedExceptionsMessageRegExp = "有学生学号重复.*\\s*.*\\s*.*\\s*.*",
-            groups = {"functest"})
-    public void testSetStudentListOfCheckDuplicateCode() {
-        /*
-         测试是否会校验重复学号，能否正确抛出报错信息
-         */
-        StudentDetails a = new StudentDetails("小王", 1, 93);
-        StudentDetails b = new StudentDetails("小刘", 1, 90);
-        asObj.setStudentList(a, b);
-    }
 
-    @Test
-    public void testGetStudentList() {
-
-    }
-
-    @Test
+    @Test(groups = {"funcTest", "allTest"})
     public void testClearStudentList() {
         // 载入数据后，测试能否清空数据
         asObj.clearStudentList();
         Assert.assertNull(asObj.getStudentList(), "StudentList数组未清空");
     }
 
-    @Test
+    @Test(groups = {"funcTest", "allTest"})
     public void testScoreRank() {
+        StudentDetails a = new StudentDetails("小王", 1, 90);
+        StudentDetails b = new StudentDetails("小刘", 2, 93);
+        StudentDetails c = new StudentDetails("小毛", 3, 90);
+        StudentDetails d = new StudentDetails("小田", 4, 7);
+        asObj.setStudentList(a, b, c, d);
+        // 进行排序
+        asObj.scoreRank();
+        // 构造期望结果
+        StudentDetails[] exceptStudentList = {b, a, c, d};
+        Assert.assertEquals(asObj.getStudentList(), exceptStudentList, "成绩排序错误");
     }
 
-    @Test
+    /*
+    测试计算平均分功能是否正确
+     */
+    @Test(groups = {"funcTest", "allTest"})
     public void testCalcAvgScore() {
+        StudentDetails a = new StudentDetails("小王", 1, 90);
+        StudentDetails b = new StudentDetails("小刘", 2, 93);
+        StudentDetails c = new StudentDetails("小毛", 3, 90);
+        StudentDetails d = new StudentDetails("小田", 4, 7);
+        asObj.setStudentList(a, b, c, d);
+        // 计算平均分
+        double actualAvgValue = asObj.calcAvgScore();
+        // （90 + 93 + 90 + 7) / 4 = 70 期望结果
+        Assert.assertEquals(actualAvgValue, 70.000, "平均值计算错误");
+    }
+
+    /*
+     测试是否会校验重复学号，能否正确抛出报错信息
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class,
+            expectedExceptionsMessageRegExp = "有学生学号重复.*\\s*.*\\s*.*\\s*.*",
+            groups = {"allTest", "abnormalTest"})
+    public void testSetStudentListWithCheckDuplicateCode() {
+        StudentDetails a = new StudentDetails("小王", 1, 93);
+        StudentDetails b = new StudentDetails("小刘", 1, 90);
+        asObj.setStudentList(a, b);
+    }
+
+    /*
+    测试是否会校验错误的学号，是否能正确抛出报错信息
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class,
+            expectedExceptionsMessageRegExp = "有学生学号为小于零.*",
+            groups = {"allTest", "abnormalTest"})
+    public void testSetStudentListWithIllegalCode() {
+        StudentDetails a = new StudentDetails("飒飒", -1, 33);
+        asObj.setStudentList(a);
+    }
+
+    /*
+    测试是否会校验错误的成绩，是否能正确抛出报错信息
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class,
+            expectedExceptionsMessageRegExp = "有学生成绩为小于零.*",
+            groups = {"allTest", "abnormalTest"})
+    public void testSetStudentListWithIllegalScore() {
+        StudentDetails a = new StudentDetails("飒飒", 3, -321);
+        asObj.setStudentList(a);
     }
 }
